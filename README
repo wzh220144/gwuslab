@@ -1,0 +1,23 @@
+make or make all to compile this program
+./main will execute this program
+
+The main fuction will first display the speed of slab allocator allocating and freeing
+128, 256, 512, 513, 4096, 8192 bytes objects, which are three small objects and three 
+large objects.
+
+Then it will display the speed of using malloc and free to do the same thing.
+We can find that slab allocator does speed up the process.
+
+In order to caculate exactly and average speed, I do 100 times freeing and allocating
+one type objects, and then do the same thing 100,000 times. In this way I got the result
+of 10,000,000 times of freeing or allocate one type objects. Divid the result with 
+10,000,000, I got the average time that allocate or free an object.
+
+As this program do too many times free and allocate objects, this program will cost around
+30s to run (in my pc). So please be a little patient.
+
+hash.h and hash.c is the code for hash table used for large object
+kmem_cache.h and slab is the code for building struct slab and kmem_cache
+kmem_cache.c is the code for implementing kmem_cache_alloc and kmem_cache_free and some 
+other routine used in this program, such as startup(), used for seting up caches in the 
+begining of the program.
